@@ -5,11 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import AssessmentForm from './AssessmentForm';
-import { Loader2 } from 'lucide-react';
 
 export default function AssessmentTool() {
   const [currentTab, setCurrentTab] = useState('assessment');
-  const [progress, setProgress] = useState(0);
+  const [progress] = useState(0);
 
   return (
     <div className="space-y-6">

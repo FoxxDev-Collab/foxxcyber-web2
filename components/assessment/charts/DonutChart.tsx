@@ -1,72 +1,64 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 interface DonutChartProps {
   value: number;
   size?: number;
   strokeWidth?: number;
   primaryColor?: string;
-  backgroundColor?: string;
+  secondaryColor?: string;
   children?: React.ReactNode;
 }
 
 const DonutChart: React.FC<DonutChartProps> = ({
   value,
-  size = 160,
-  strokeWidth = 12,
-  primaryColor = '#4f46e5',
-  backgroundColor = '#e5e7eb',
+  size = 100,
+  strokeWidth = 8,
+  primaryColor = '#0ea5e9', // sky-500
+  secondaryColor = '#e2e8f0', // slate-200
   children
 }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  
-  useEffect(() => {
-    if (!canvasRef.current) return;
-    
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    
-    // Set canvas size with higher resolution for retina displays
-    const scale = window.devicePixelRatio || 1;
-    canvas.width = size * scale;
-    canvas.height = size * scale;
-    canvas.style.width = `${size}px`;
-    canvas.style.height = `${size}px`;
-    
-    // Scale the drawing context
-    ctx.scale(scale, scale);
-    
-    // Calculate the actual progress (0-100)
-    const progress = Math.min(Math.max(value, 0), 100) / 100;
-    const centerX = size / 2;
-    const centerY = size / 2;
-    const radius = (size - strokeWidth) / 2;
-    
-    // Clear the canvas
-    ctx.clearRect(0, 0, size, size);
-    
-    // Draw background circle
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    ctx.lineWidth = strokeWidth;
-    ctx.strokeStyle = backgroundColor;
-    ctx.stroke();
-    
-    // Draw progress arc
-    if (progress > 0) {
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, radius, -0.5 * Math.PI, (-0.5 + 2 * progress) * Math.PI, false);
-      ctx.lineWidth = strokeWidth;
-      ctx.strokeStyle = primaryColor;
-      ctx.stroke();
-    }
-  }, [value, size, strokeWidth, primaryColor, backgroundColor]);
-  
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const fillPercentage = Math.min(Math.max(value, 0), 100);
+  const fillValue = circumference - (circumference * fillPercentage) / 100;
+
   return (
-    <div className="relative inline-flex items-center justify-center">
-      <canvas ref={canvasRef} width={size} height={size} />
+    <div style={{ position: 'relative', width: size, height: size }}>
+      <svg width={size} height={size}>
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke={secondaryColor}
+          strokeWidth={strokeWidth}
+        />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke={primaryColor}
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference}
+          strokeDashoffset={fillValue}
+          strokeLinecap="round"
+          transform={`rotate(-90 ${size / 2} ${size / 2})`}
+        />
+      </svg>
       {children && (
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
           {children}
         </div>
       )}

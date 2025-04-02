@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ControlCard from './ControlCard';
+import ResultsModal from './ResultsModal';
+import UploadAssessment from './UploadAssessment';
 import { 
   loadAllControls, 
   type Control,
@@ -13,6 +15,30 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogDescription, 
+  DialogFooter, 
+  DialogHeader, 
+  DialogTitle 
+} from '@/components/ui/dialog';
+
+interface AssessmentData {
+  id: string;
+  name: string;
+  organization: string;
+  assessor: string;
+  scope: string;
+  date: string;
+  status: string;
+  controls: Record<string, {
+    id: string;
+    status: string;
+    notes: string;
+    evidence: string;
+  }>;
+}
 
 const AssessmentForm: React.FC = () => {
   const [controls, setControls] = useState<Controls>({});
@@ -32,6 +58,11 @@ const AssessmentForm: React.FC = () => {
     completed: number;
     percentage: number;
   }>({ total: 0, completed: 0, percentage: 0 });
+  
+  // New state for modals
+  const [showConfirmDialog, setShowConfirmDialog] = useState<boolean>(false);
+  const [showResultsModal, setShowResultsModal] = useState<boolean>(false);
+  const [assessmentData, setAssessmentData] = useState<AssessmentData | null>(null);
 
   // Load controls on component mount
   useEffect(() => {
@@ -209,88 +240,38 @@ const AssessmentForm: React.FC = () => {
     setActiveTab(family);
   };
 
-  const handleViewResults = () => {
-    // Create the assessment data
-    const assessmentData: {
-      id: string;
-      name: string;
-      organization: string;
-      assessor: string;
-      scope: string;
-      date: string;
-      status: string;
-      controls: Record<string, {
-        id: string;
-        status: string;
-        notes: string;
-        evidence: string;
-      }>;
-    } = {
-      id: Date.now().toString(),
-      name: assessmentName,
-      organization: organization,
-      assessor: assessor,
-      scope: scope,
-      date: new Date().toISOString(),
-      status: "In Progress",
-      controls: {}
-    };
-
-    // Add all controls with their status, notes, and evidence
-    Object.keys(controls).forEach(family => {
-      Object.values(controls[family]).forEach(control => {
-        assessmentData.controls[control.id] = {
-          id: control.id,
-          status: control.status || "Not Implemented",
-          notes: control.notes || "",
-          evidence: control.evidence || ""
-        };
-      });
-    });
-
-    // Store the assessment data in localStorage
-    localStorage.setItem('currentAssessment', JSON.stringify(assessmentData));
-    
-    // Navigate to the results page
-    window.location.href = '/results';
-  };
-
-  const handleCompleteAndExport = () => {
+  const handleShowResults = () => {
     if (!assessmentName) {
       alert('Please provide an assessment name');
       return;
     }
-
+    
+    // Check if assessment is complete enough to show results
+    if (progress.percentage < 10) {
+      setShowConfirmDialog(true);
+      return;
+    }
+    
+    createAndShowResults();
+  };
+  
+  const createAndShowResults = () => {
     // Create the assessment data
-    const assessmentData: {
-      id: string;
-      name: string;
-      organization: string;
-      assessor: string;
-      scope: string;
-      date: string;
-      status: string;
-      controls: Record<string, {
-        id: string;
-        status: string;
-        notes: string;
-        evidence: string;
-      }>;
-    } = {
+    const data: AssessmentData = {
       id: Date.now().toString(),
       name: assessmentName,
       organization: organization,
       assessor: assessor,
       scope: scope,
       date: new Date().toISOString(),
-      status: "Completed",
+      status: progress.percentage === 100 ? "Completed" : "In Progress",
       controls: {}
     };
 
     // Add all controls with their status, notes, and evidence
     Object.keys(controls).forEach(family => {
       Object.values(controls[family]).forEach(control => {
-        assessmentData.controls[control.id] = {
+        data.controls[control.id] = {
           id: control.id,
           status: control.status || "Not Implemented",
           notes: control.notes || "",
@@ -299,23 +280,40 @@ const AssessmentForm: React.FC = () => {
       });
     });
 
-    // Store the assessment data in localStorage
-    localStorage.setItem('currentAssessment', JSON.stringify(assessmentData));
+    // Store the assessment data 
+    setAssessmentData(data);
+    localStorage.setItem('currentAssessment', JSON.stringify(data));
     
-    // Create a downloadable JSON file
-    const jsonData = JSON.stringify(assessmentData, null, 2);
-    const blob = new Blob([jsonData], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `nist-rmf-assessment-${assessmentName.replace(/\s+/g, '-').toLowerCase()}-${new Date().toISOString().split('T')[0]}.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    // Show the results modal
+    setShowResultsModal(true);
+  };
+  
+  const handleUploadAssessment = (uploadedAssessment: AssessmentData) => {
+    // Set all the form fields from the uploaded assessment
+    setAssessmentName(uploadedAssessment.name);
+    setOrganization(uploadedAssessment.organization);
+    setAssessor(uploadedAssessment.assessor);
+    setScope(uploadedAssessment.scope);
     
-    // Navigate to the results page
-    window.location.href = '/results';
+    // Load the control statuses from the uploaded assessment
+    const newControls = { ...controls };
+    
+    // Update controls with status and notes from the uploaded assessment
+    Object.keys(newControls).forEach(family => {
+      Object.values(newControls[family]).forEach(control => {
+        const uploadedControl = uploadedAssessment.controls[control.id];
+        if (uploadedControl) {
+          newControls[family][control.id] = {
+            ...control,
+            status: uploadedControl.status,
+            notes: uploadedControl.notes,
+            evidence: uploadedControl.evidence
+          };
+        }
+      });
+    });
+    
+    setControls(newControls);
   };
 
   if (loading) {
@@ -339,9 +337,43 @@ const AssessmentForm: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {/* Confirmation Dialog */}
+      <Dialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Continue with Incomplete Assessment?</DialogTitle>
+            <DialogDescription>
+              Your assessment is only {progress.percentage}% complete. Are you sure you want to view the results now?
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowConfirmDialog(false)}>
+              Continue Assessment
+            </Button>
+            <Button onClick={() => {
+              setShowConfirmDialog(false);
+              createAndShowResults();
+            }}>
+              View Results
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      
+      {/* Results Modal */}
+      <ResultsModal 
+        open={showResultsModal}
+        onOpenChange={setShowResultsModal}
+        assessmentData={assessmentData}
+        progress={progress}
+      />
+      
       <Card>
         <CardHeader>
-          <CardTitle>NIST RMF Assessment</CardTitle>
+          <CardTitle className="flex justify-between items-center">
+            <span>NIST RMF Assessment</span>
+            <UploadAssessment onUpload={handleUploadAssessment} />
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
@@ -395,14 +427,9 @@ const AssessmentForm: React.FC = () => {
                 <span className="text-sm font-medium">{progress.percentage}% complete</span>
               </div>
             </div>
-            <div className="flex gap-2">
-              <Button variant="outline" onClick={handleViewResults}>
-                View Results
-              </Button>
-              <Button onClick={handleCompleteAndExport}>
-                Complete Assessment
-              </Button>
-            </div>
+            <Button onClick={handleShowResults}>
+              View Results
+            </Button>
           </div>
         </CardContent>
       </Card>

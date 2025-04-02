@@ -2,7 +2,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
-import { MDXContent } from '@/components/mdx-content';
+import React from 'react';
+import Markdown from 'react-markdown';
 
 interface BlogPostPageProps {
   params: {
@@ -63,7 +64,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </header>
         <div className="prose prose-lg dark:prose-invert max-w-none">
-          <MDXContent {...post.content} />
+          <Markdown>{post.content}</Markdown>
         </div>
       </div>
     </article>

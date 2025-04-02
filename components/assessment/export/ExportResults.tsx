@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import type { Control } from '../../../assessment_tool/src/lib/utils/controlUtils';
-import { getFamilyFullName } from '../../../assessment_tool/src/lib/utils/controlUtils';
+import { getFamilyFullName } from '../../../lib/utils/controlUtils';
 
 // Matching the v2.html export format
 interface AssessmentControl {

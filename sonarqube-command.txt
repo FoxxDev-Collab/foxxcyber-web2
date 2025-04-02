@@ -1,0 +1,3 @@
+sonar-scanner.bat -D"sonar.projectKey=Foxx-Web2" -D"sonar.sources=." -D"sonar.host.url=http://localhost:29000" -D"sonar.token=sqp_43c3172db1fa9bafa1aab3f7a8dc75be1af0fd99"
+
+

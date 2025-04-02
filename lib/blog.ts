@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
-import { serialize } from 'next-mdx-remote/serialize';
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
 
@@ -12,7 +11,7 @@ export interface BlogPost {
   date: string;
   author: string;
   excerpt: string;
-  content: any;
+  content: string;
   readingTime?: number;
   tags?: string[];
 }
@@ -21,9 +20,9 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   const fileNames = fs.readdirSync(postsDirectory);
   const posts = await Promise.all(
     fileNames
-      .filter((fileName) => fileName.endsWith('.mdx'))
+      .filter((fileName) => fileName.endsWith('.mdx') || fileName.endsWith('.md'))
       .map(async (fileName) => {
-        const slug = fileName.replace(/\.mdx$/, '');
+        const slug = fileName.replace(/\.(mdx|md)$/, '');
         return await getPostBySlug(slug);
       })
   );
@@ -35,25 +34,27 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
-    const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+    // Try .mdx extension first, then fallback to .md if needed
+    let fullPath = path.join(postsDirectory, `${slug}.mdx`);
+    if (!fs.existsSync(fullPath)) {
+      fullPath = path.join(postsDirectory, `${slug}.md`);
+      if (!fs.existsSync(fullPath)) {
+        return null;
+      }
+    }
+    
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
     const stats = readingTime(content);
 
-    // Serialize the MDX content
-    const mdxSource = await serialize(content, {
-      mdxOptions: {
-        development: process.env.NODE_ENV === 'development',
-      },
-    });
-
+    // Return raw content instead of serialized MDX
     return {
       slug,
       title: data.title,
       date: data.date,
       author: data.author,
       excerpt: data.excerpt,
-      content: mdxSource,
+      content: content,
       readingTime: Math.ceil(stats.minutes),
       tags: data.tags,
     };
