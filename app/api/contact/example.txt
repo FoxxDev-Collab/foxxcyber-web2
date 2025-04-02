@@ -1,0 +1,44 @@
+const request = require('request');
+
+const options = {
+  method: 'POST',
+  url: 'http://localhost:3000/rest/people',
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjZDIzM2Q3YS1jZjVjLTRmZGYtYTcyMC0zMjMxMGJmMGIyYTkiLCJ0eXBlIjoiQVBJX0tFWSIsIndvcmtzcGFjZUlkIjoiY2QyMzNkN2EtY2Y1Yy00ZmRmLWE3MjAtMzIzMTBiZjBiMmE5IiwiaWF0IjoxNzM4MzQyMDA3LCJleHAiOjQ4OTE5NDIwMDYsImp0aSI6IjA3NTBiYjAzLWNlOWItNGI4MS1hYTlhLWVjNTVmZmZlYTQ4YiJ9.rSFbxxtWVaQQQokbKKjGjUgWrlNVzm9cZnJKYwDscZU'
+  },
+  body: {
+    name: {firstName: 'string', lastName: 'string'},
+    emails: {primaryEmail: 'string', additionalEmails: ['user@example.com']},
+    linkedinLink: {
+      primaryLinkLabel: 'string',
+      primaryLinkUrl: 'string',
+      secondaryLinks: [{url: 'http://example.com', label: 'string'}]
+    },
+    xLink: {
+      primaryLinkLabel: 'string',
+      primaryLinkUrl: 'string',
+      secondaryLinks: [{url: 'http://example.com', label: 'string'}]
+    },
+    jobTitle: 'string',
+    phones: {
+      additionalPhones: ['string'],
+      primaryPhoneCountryCode: 'string',
+      primaryPhoneCallingCode: 'string',
+      primaryPhoneNumber: 'string'
+    },
+    city: 'string',
+    avatarUrl: 'string',
+    position: 0,
+    createdBy: {source: 'EMAIL'},
+    companyId: '8bb73d03-06b4-47c7-80c7-59301f770eda'
+  },
+  json: true
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});

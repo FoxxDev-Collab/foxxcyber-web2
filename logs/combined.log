@@ -1,0 +1,8 @@
+{"level":"info","message":"No Redis URL provided, using in-memory rate limiting","service":"website","timestamp":"2025-02-01T05:15:35.653Z"}
+{"level":"info","message":"No Redis URL provided, using in-memory rate limiting","service":"website","timestamp":"2025-02-01T05:15:36.684Z"}
+{"level":"info","message":"Redis connection established for rate limiting","service":"website","timestamp":"2025-03-13T19:44:48.441Z"}
+{"level":"info","message":"Redis connection established for rate limiting","service":"website","timestamp":"2025-03-13T19:44:49.506Z"}
+{"level":"info","message":"Redis connection established for rate limiting","service":"website","timestamp":"2025-03-13T19:50:13.171Z"}
+{"level":"info","message":"Redis connection established for rate limiting","service":"website","timestamp":"2025-03-13T19:50:14.084Z"}
+{"level":"info","message":"Redis connection established for rate limiting","service":"website","timestamp":"2025-03-13T19:50:51.055Z"}
+{"level":"info","message":"Redis connection established for rate limiting","service":"website","timestamp":"2025-03-13T19:50:52.106Z"}
