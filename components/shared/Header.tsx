@@ -23,7 +23,6 @@ const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Services', items: services },
   { name: 'Assessment', href: '/assessment' },
-  { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },  
   { name: 'About', href: '/about' },
 ];
