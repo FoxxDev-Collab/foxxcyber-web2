@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Building2, User, Phone, Briefcase, MapPin, MessageSquare, CheckCircle, Shield } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-
+import { toast } from 'sonner';
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -53,14 +53,25 @@ const ContactForm = () => {
     setSubmitting(true);
     
     try {
-      // Simulate API call delay - replace with your actual API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // For demo purposes, we'll just set submitted to true
-      setSubmitted(true);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setSubmitted(true);
+      toast.success('Message sent successfully!');
     } catch (error) {
       console.error('Error submitting form:', error);
+      toast.error(error instanceof Error ? error.message : 'Failed to send message');
     } finally {
       setSubmitting(false);
     }
