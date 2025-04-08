@@ -67,12 +67,12 @@ export default function HomePage() {
               <FoxxCyberLogo />
               
               <h1 className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80 dark:from-primary dark:to-primary/60">
-                Fortify Your Business Against Cyber Threats
+                Build Your Business on Bedrock Security Foundations
               </h1>
               <p className="text-xl text-muted-foreground">
-                At Foxx Cyber, we specialize in providing top-notch cyber security consulting 
-                services to businesses like yours. Our team of experts understands the importance 
-                of protecting your organization&apos;s sensitive data and reputation.
+                Foxx Cyber provides proactive Bedrock Security solutions, establishing the firm 
+                foundation essential for your business to operate securely and thrive.
+                Let us help you build with confidence.
               </p>
               <div className="flex gap-4 pt-4">
                 <Button size="lg" className="group" asChild>
@@ -126,7 +126,7 @@ export default function HomePage() {
       <section className="py-20 bg-gradient-to-r from-blue-50/50 to-indigo-50/50 dark:from-slate-900/50 dark:to-slate-800/50">
         <div className="container px-4 max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Why Choose Foxx Cyber
+            Why Choose Foxx Cyber?
           </h2>
           <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
             <Card className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm transform hover:scale-105 transition-all">
@@ -178,14 +178,14 @@ export default function HomePage() {
       <section className="py-20">
         <div className="container px-4 max-w-7xl mx-auto text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Secure Your Business?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Build Your Security Foundation?</h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Contact us today to discuss your security needs and learn how we can help protect 
-              your organization from cyber threats.
+              Contact Foxx Cyber today to learn how our Bedrock Security approach 
+              can establish a firm, reliable foundation to protect and grow your organization.
             </p>
             <Button size="lg" className="group" asChild>
               <Link href="/contact" className="flex items-center justify-center">
-                Schedule a Consultation
+                Explore Bedrock Security Solutions
                 <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>

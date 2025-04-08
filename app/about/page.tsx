@@ -1,5 +1,4 @@
-import React from 'react';
-import { Shield, Users, Award, LightbulbIcon, TrendingUp, Lock, Zap } from 'lucide-react';
+import { Users, TrendingUp, Zap } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 
 // Foxx Cyber Logo Component for About Page
@@ -13,11 +12,10 @@ export default function AboutPage() {
               <div className="flex flex-col md:flex-row items-center justify-between gap-12">
                 <div className="flex flex-col text-left md:w-1/2">
                   <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-50 mb-6">
-                    Transforming Security Into Your Competitive Edge
+                    Foxx Cyber: Building Your Bedrock Security Foundation
                   </h1>
                   <p className="text-xl text-gray-600 dark:text-gray-300">
-                    At Foxx Cyber, we believe security isn&apos;t just about defense—it&apos;s about building a foundation for innovation, 
-                    trust, and sustainable growth. We help organizations build security cultures that protect assets while enabling business.
+                    At Foxx Cyber, we believe security isn't just about defense—it's about establishing a <span className="font-semibold text-primary dark:text-primary/80">firm foundation</span> for innovation, trust, and sustainable growth. Our Bedrock Security approach helps organizations build security cultures that protect assets while empowering business progress.
                   </p>
                 </div>
                 
@@ -66,152 +64,116 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Our Security Philosophy */}
+          {/* Our Bedrock Philosophy */}
           <section className="py-16 bg-white/80 dark:bg-slate-800/80">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold mb-8 text-center dark:text-gray-50">Our Security Philosophy</h2>
-                <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 text-center">
-                  We believe meaningful security is a strategic asset that powers your business forward, not just a compliance checkbox or technical barrier.
+                <h2 className="text-3xl font-bold mb-8 text-center dark:text-gray-50">Our Bedrock Security Philosophy</h2>
+                <p className="text-lg text-center text-gray-600 dark:text-gray-300 mb-12">
+                  Just as a building needs a solid foundation, your business requires robust security. Our Bedrock Security philosophy is built on three core pillars, ensuring your digital assets rest on solid ground.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="bg-white/50 dark:bg-slate-800/30 rounded-lg p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-4 text-primary dark:text-primary/90 flex items-center">
-                      <LightbulbIcon className="w-6 h-6 mr-2" />
-                      Security as a Business Enabler
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      In today&apos;s digital marketplace, strong security builds customer trust, opens doors to new markets, and protects your reputation. We help you transform security from a cost center to a powerful differentiator that drives growth and innovation.
-                    </p>
-                  </div>
-                  <div className="bg-white/50 dark:bg-slate-800/30 rounded-lg p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-4 text-primary dark:text-primary/90 flex items-center">
-                      <Users className="w-6 h-6 mr-2" />
-                      Security Culture Over Tools
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      While technology is important, we know that human behavior is the cornerstone of effective security. We help build organizational cultures where security awareness becomes second nature, empowering every employee to be part of your security posture.
-                    </p>
-                  </div>
-                  <div className="bg-white/50 dark:bg-slate-800/30 rounded-lg p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-4 text-primary dark:text-primary/90 flex items-center">
-                      <TrendingUp className="w-6 h-6 mr-2" />
-                      Balanced Risk Management
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      We understand that business requires calculated risks. Our approach balances robust protection with operational flexibility, ensuring security enhances rather than hinders your business objectives. We help you take smart risks, safely.
-                    </p>
-                  </div>
-                  <div className="bg-white/50 dark:bg-slate-800/30 rounded-lg p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-4 text-primary dark:text-primary/90 flex items-center">
-                      <Lock className="w-6 h-6 mr-2" />
-                      Resilience by Design
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      In a world where breaches are inevitable, we focus on building resilient systems that can withstand, recover, and adapt to security incidents. Our approach ensures your business remains operational and protected even when faced with evolving threats.
-                    </p>
-                  </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                  <Card className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm p-6">
+                    <CardContent>
+                      <div className="flex justify-center mb-4">
+                        <div className="p-3 rounded-xl bg-primary/10 dark:bg-primary/20">
+                          <Users className="h-8 w-8 text-primary" />
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">People First</h3>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        Empowering your team with security awareness and clear processes creates the strongest defense.
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm p-6">
+                    <CardContent>
+                      <div className="flex justify-center mb-4">
+                        <div className="p-3 rounded-xl bg-primary/10 dark:bg-primary/20">
+                          <TrendingUp className="h-8 w-8 text-primary" />
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Business Aligned</h3>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        Security should enable, not hinder. We align security controls with your operational needs and strategic goals.
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm p-6">
+                    <CardContent>
+                      <div className="flex justify-center mb-4">
+                        <div className="p-3 rounded-xl bg-primary/10 dark:bg-primary/20">
+                          <Zap className="h-8 w-8 text-primary" />
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Adaptive Security</h3>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        The threat landscape evolves constantly. We implement security that adapts with your business and emerging risks.
+                      </p>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </div>
           </section>
-    
-          {/* Core Values */}
+
+          {/* Our Journey Section */ }
           <section className="py-16">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center mb-6 dark:text-gray-50">Our Core Values</h2>
-              <p className="text-xl text-center text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12">
-                These principles guide everything we do, from how we approach security challenges to how we build relationships with our clients.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <Card className="bg-white/50 dark:bg-slate-800/50 backdrop-blur hover:shadow-md transition-shadow">
-                  <CardContent className="pt-6">
-                    <Shield className="w-12 h-12 text-primary mb-4" />
-                    <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Expert Protection</h3>
-                    <p className="text-gray-600 dark:text-gray-300">We deliver top-tier cybersecurity solutions backed by industry-leading expertise and continuous learning.</p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-white/50 dark:bg-slate-800/50 backdrop-blur hover:shadow-md transition-shadow">
-                  <CardContent className="pt-6">
-                    <Users className="w-12 h-12 text-primary mb-4" />
-                    <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Client Partnership</h3>
-                    <p className="text-gray-600 dark:text-gray-300">We build long-term partnerships, tailoring our solutions to your unique security needs and business goals.</p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-white/50 dark:bg-slate-800/50 backdrop-blur hover:shadow-md transition-shadow">
-                  <CardContent className="pt-6">
-                    <Award className="w-12 h-12 text-primary mb-4" />
-                    <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Certified Excellence</h3>
-                    <p className="text-gray-600 dark:text-gray-300">Our team holds advanced industry certifications including CISSP, CISM, and Security+, ensuring best-in-class expertise.</p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-white/50 dark:bg-slate-800/50 backdrop-blur hover:shadow-md transition-shadow">
-                  <CardContent className="pt-6">
-                    <Zap className="w-12 h-12 text-primary mb-4" />
-                    <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Adaptive Innovation</h3>
-                    <p className="text-gray-600 dark:text-gray-300">We constantly evolve our approaches to stay ahead of emerging threats and changing business landscapes.</p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-    
-          {/* Professional Journey */}
-          <section className="py-16 bg-white/80 dark:bg-slate-800/80">
-            <div className="container mx-auto px-4">
-              <div className="max-w-3xl mx-auto">
-                <h2 className="text-3xl font-bold mb-8 text-center dark:text-gray-50">Our Professional Journey</h2>
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-center mb-12 dark:text-gray-50">The Foxx Cyber Journey: From Expertise to Foundation</h2>
                 <div className="space-y-8">
+                  {/* Point 1: Foundation */}
                   <div className="relative pl-8 border-l-2 border-primary/20 dark:border-primary/40">
                     <div className="absolute w-4 h-4 bg-primary rounded-full -left-[9px] top-1 dark:bg-primary/80"></div>
-                    <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Foundation in IT Security</h3>
-                    <p className="text-gray-600 dark:text-gray-300">Starting with a strong foundation in IT and Security+ certification, 
-                    our team brings fundamental security expertise to every project. We&apos;ve built our practice on solid technical understanding of the challenges organizations face.</p>
+                    <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Deep Technical Roots</h3>
+                    <p className="text-gray-600 dark:text-gray-300">Foxx Cyber began with a passion for the technical intricacies of cybersecurity. Our early focus was on mastering the tools and techniques needed to defend complex digital environments, earning certifications like CISSP.</p>
                   </div>
+                  {/* Point 2: Growth */}
                   <div className="relative pl-8 border-l-2 border-primary/20 dark:border-primary/40">
                     <div className="absolute w-4 h-4 bg-primary rounded-full -left-[9px] top-1 dark:bg-primary/80"></div>
-                    <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Advanced Certifications</h3>
-                    <p className="text-gray-600 dark:text-gray-300">Achieving CISM certification through ISACA demonstrates our 
-                    commitment to mastering information security management. We&apos;ve expanded our expertise beyond technical solutions to include governance, risk management, and compliance frameworks that drive business value.</p>
+                    <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Strategic Security Management</h3>
+                    <p className="text-gray-600 dark:text-gray-300">We recognized that true security requires more than technology. Achieving CISM certification marked our evolution towards strategic information security management, encompassing governance, risk, and compliance.</p>
                   </div>
+                  {/* Point 3: Bedrock */}
                   <div className="relative pl-8 border-l-2 border-primary/20 dark:border-primary/40">
                     <div className="absolute w-4 h-4 bg-primary rounded-full -left-[9px] top-1 dark:bg-primary/80"></div>
-                    <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Strategic Business Integration</h3>
-                    <p className="text-gray-600 dark:text-gray-300">Today, we focus on integrating security seamlessly into business strategies, helping organizations transform security from a necessary expense into a competitive advantage. Our approach combines technical expertise with business acumen to deliver security solutions that enable growth.</p>
+                    <h3 className="text-xl font-semibold mb-2 dark:text-gray-100">Establishing Bedrock Security</h3>
+                    <p className="text-gray-600 dark:text-gray-300">Today, Foxx Cyber integrates deep technical expertise with strategic business acumen through our Bedrock Security framework. We focus on building a <span className="font-semibold text-primary dark:text-primary/80">firm security foundation</span> that allows businesses to innovate and grow confidently, transforming security into a true competitive advantage.</p>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Why Security Culture Matters */}
+          {/* Why Security Culture Matters */ }
           <section className="py-16">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-3xl font-bold mb-6 dark:text-gray-50">Why Security Culture Matters</h2>
+                <h2 className="text-3xl font-bold mb-6 dark:text-gray-50">Why a Firm Foundation Matters</h2>
                 <p className="text-xl text-gray-600 dark:text-gray-300 mb-12">
-                  In today&apos;s digital landscape, security is more than just technology—it&apos;s a mindset that permeates every aspect of your organization.
+                  In today&apos;s digital landscape, security is the bedrock upon which trust, resilience, and growth are built. It&apos;s more than technology—it&apos;s a foundational element of your organization.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                   <div className="bg-white/50 dark:bg-slate-800/30 p-6 rounded-lg shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-primary dark:text-primary/90">Customer Trust</h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      Today&apos;s customers choose businesses they can trust with their data. A visible security culture demonstrates your commitment to protecting their information, creating a powerful differentiator in crowded markets.
+                      A visible commitment to security builds confidence. Customers choose businesses that demonstrably protect their data, creating a powerful market differentiator.
                     </p>
                   </div>
                   
                   <div className="bg-white/50 dark:bg-slate-800/30 p-6 rounded-lg shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-primary dark:text-primary/90">Operational Resilience</h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      Organizations with strong security cultures recover faster from incidents and adapt more readily to new threats, ensuring business continuity even in challenging circumstances.
+                      Organizations built on a firm security foundation recover faster from incidents and adapt more readily to new threats, ensuring continuity.
                     </p>
                   </div>
                   
                   <div className="bg-white/50 dark:bg-slate-800/30 p-6 rounded-lg shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-primary dark:text-primary/90">Regulatory Advantage</h3>
+                    <h3 className="text-xl font-semibold mb-3 text-primary dark:text-primary/90">Regulatory & Growth Advantage</h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      As compliance requirements grow more complex, organizations with established security cultures can adapt more efficiently, turning regulatory challenges into opportunities for improvement.
+                      A solid security posture simplifies compliance and unlocks growth opportunities, turning regulatory challenges into strategic improvements.
                     </p>
                   </div>
                 </div>

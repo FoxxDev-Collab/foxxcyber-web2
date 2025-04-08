@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
-import { Shield, Clock, Users, ArrowRight, Lock, FileCheck, TrendingUp, Zap } from "lucide-react"
+import { Shield, Users, ArrowRight, Lock, TrendingUp, Zap, Layers, Square, Pyramid } from "lucide-react"
 import Link from "next/link"
 
 
@@ -43,16 +43,16 @@ export default function ServicesPage() {
             </svg>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80 dark:from-primary dark:to-primary/60">
-            Security That Drives Business Value
+            Building Security on Firm Foundations
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Our services transform security from a necessary expense into a strategic asset that empowers your organization
+            Foxx Cyber's Bedrock Security services provide the essential framework to protect and empower your business growth.
           </p>
         </div>
 
         {/* Why Security Matters Section */}
         <div className="mb-20">
-          <h2 className="text-3xl font-bold text-center mb-12 dark:text-gray-50">Security as Your Competitive Edge</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 dark:text-gray-50">Security: Your Foundation for Growth</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             <div className="bg-white/50 dark:bg-slate-800/30 rounded-lg p-6 shadow-sm">
               <div className="p-3 rounded-xl inline-block bg-primary/10 dark:bg-primary/20 mb-4">
@@ -96,100 +96,97 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        {/* Main Services */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
-          {/* Security Officer as a Service */}
-          <Card className="bg-white/50 dark:bg-slate-800/50 backdrop-blur transform hover:scale-105 transition-all">
-            <CardHeader>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 rounded-xl bg-primary/10 dark:bg-primary/20">
-                  <Users className="h-8 w-8 text-primary" />
+        {/* Service Tiers Section - Replaces Core Services */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold text-center mb-12 dark:text-gray-50">Foxx Cyber's Bedrock Security Tiers</h2>
+          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Foundation Layer Card */}
+            <Card className="bg-white/50 dark:bg-slate-800/30 backdrop-blur-sm flex flex-col transform hover:scale-[1.02] transition-all">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-3 rounded-xl bg-primary/10 dark:bg-primary/20">
+                    <Layers className="h-7 w-7 text-primary" />
+                  </div>
+                  <CardTitle className="text-2xl">Foundation Layer</CardTitle>
                 </div>
-                <div>
-                  <CardTitle className="text-2xl">Security Officer as a Service</CardTitle>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Strategic Security Leadership</p>
-                </div>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300">
-                Our Security Officer as a Service (SOaaS) builds security programs that align with your business objectives.
-              </p>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Shield className="h-4 w-4 text-primary" />
-                </div>
-                <span className="text-gray-600 dark:text-gray-300">Executive-level security leadership</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <FileCheck className="h-4 w-4 text-primary" />
-                </div>
-                <span className="text-gray-600 dark:text-gray-300">Strategic security roadmaps</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="h-4 w-4 text-primary" />
-                </div>
-                <span className="text-gray-600 dark:text-gray-300">Business-aligned security programs</span>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button className="w-full group" asChild>
-                <Link href="/soaas" className="flex items-center justify-center">
-                  Learn More About SOaaS
-                  <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="text-gray-600 dark:text-gray-300 mb-4">Essential security policies, controls, baseline risk assessment, and fundamental guidance.</p>
+                <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-300 text-sm">
+                  <li>Essential Policies & Controls</li>
+                  <li>Baseline Risk Assessment</li>
+                  <li>Fundamental Security Guidance</li>
+                  <li>Monthly Advisory Sessions</li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full group" variant="outline" asChild>
+                  <Link href="/contact" className="flex items-center justify-center">
+                    Request Info
+                    <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
 
-          {/* ATO Service */}
-          <Card className="bg-white/50 dark:bg-slate-800/50 backdrop-blur transform hover:scale-105 transition-all">
-            <CardHeader>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 rounded-xl bg-primary/10 dark:bg-primary/20">
-                  <Shield className="h-8 w-8 text-primary" />
+            {/* Cornerstone Layer Card */}
+            <Card className="bg-white/50 dark:bg-slate-800/30 backdrop-blur-sm border-2 border-primary/50 flex flex-col transform hover:scale-[1.02] transition-all">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-3 rounded-xl bg-primary/10 dark:bg-primary/20">
+                    <Square className="h-7 w-7 text-primary" />
+                  </div>
+                  <CardTitle className="text-2xl">Cornerstone Layer</CardTitle>
                 </div>
-                <div>
-                  <CardTitle className="text-2xl">ATO as a Service</CardTitle>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">System Authorization & Compliance</p>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="text-gray-600 dark:text-gray-300 mb-4">Comprehensive program development, regular risk management, metrics, and dedicated leadership.</p>
+                <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-300 text-sm">
+                  <li>Comprehensive Program Development</li>
+                  <li>Regular Risk Management</li>
+                  <li>Security Metrics & Reporting</li>
+                  <li>Weekly/Bi-weekly Leadership</li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full group" asChild>
+                  <Link href="/contact" className="flex items-center justify-center">
+                    Get Started
+                    <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+
+            {/* Capstone Layer Card */}
+            <Card className="bg-white/50 dark:bg-slate-800/30 backdrop-blur-sm flex flex-col transform hover:scale-[1.02] transition-all">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-3 rounded-xl bg-primary/10 dark:bg-primary/20">
+                    <Pyramid className="h-7 w-7 text-primary" />
+                  </div>
+                  <CardTitle className="text-2xl">Capstone Layer</CardTitle>
                 </div>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300">
-                Prove to your customers that you are actively protecting their data with our ATO as a Service offering.
-                We help you achieve and maintain compliance with industry standards and regulations, such as NIST.
-              </p>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Clock className="h-4 w-4 text-primary" />
-                </div>
-                <span className="text-gray-600 dark:text-gray-300">Accelerated compliance timeline</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <FileCheck className="h-4 w-4 text-primary" />
-                </div>
-                <span className="text-gray-600 dark:text-gray-300">Comprehensive documentation</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="h-4 w-4 text-primary" />
-                </div>
-                <span className="text-gray-600 dark:text-gray-300">Market expansion opportunities</span>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button className="w-full group" asChild>
-                <Link href="/services/atoaas" className="flex items-center justify-center">
-                  Learn More About ATO
-                  <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="text-gray-600 dark:text-gray-300 mb-4">Strategic alignment, advanced governance, board-level representation, and ongoing roadmap development.</p>
+                <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-300 text-sm">
+                  <li>Strategic Security Alignment</li>
+                  <li>Advanced Governance & Compliance</li>
+                  <li>Board-Level Representation</li>
+                  <li>Ongoing Security Roadmap</li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full group" variant="outline" asChild>
+                  <Link href="/contact" className="flex items-center justify-center">
+                    Discuss Enterprise Needs
+                    <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
         </div>
 
         {/* Our Approach Section */}
@@ -234,13 +231,13 @@ export default function ServicesPage() {
         <section className="py-16 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-900/50 dark:to-slate-800/50 rounded-lg">
           <div className="container mx-auto px-4">
             <div className="text-center space-y-6 max-w-2xl mx-auto">
-              <h2 className="text-3xl font-semibold dark:text-gray-50">Ready to Transform Your Security Approach?</h2>
+              <h2 className="text-3xl font-semibold dark:text-gray-50">Ready to Build Your Security Foundation?</h2>
               <p className="text-lg text-gray-600 dark:text-gray-300">
-                Schedule a consultation with our team to discuss how we can help you build security that drives business value.
+                Schedule a consultation with Foxx Cyber to discuss how our Bedrock Security approach can establish a firm foundation for your organization's protection and growth.
               </p>
               <Button size="lg" className="group" asChild>
                 <Link href="/contact" className="flex items-center">
-                  Schedule a Consultation
+                  Discuss Bedrock Security Tiers
                   <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
