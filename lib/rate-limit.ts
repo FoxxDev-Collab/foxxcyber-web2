@@ -16,6 +16,7 @@ class RateLimiter {
   private redis: Redis | null = null;
   private inMemoryStore: Map<string, { count: number; resetTime: number }>;
   private config: RateLimitConfig;
+  private useRedis: boolean = false;
 
   constructor(config: RateLimitConfig) {
     this.config = config;
@@ -24,13 +25,35 @@ class RateLimiter {
     // Initialize Redis if URL is provided
     if (process.env.REDIS_URL) {
       try {
-        this.redis = new Redis(process.env.REDIS_URL);
-        logger.info('Redis connection established for rate limiting');
+        this.redis = new Redis(process.env.REDIS_URL, {
+          connectTimeout: 5000, // 5 seconds timeout
+          maxRetriesPerRequest: 1,
+          retryStrategy: (times) => {
+            if (times > 3) {
+              logger.error('Redis connection failed after 3 attempts, falling back to in-memory store');
+              this.useRedis = false;
+              return null; // Stop retrying
+            }
+            return Math.min(times * 100, 3000);
+          }
+        });
+        
+        this.redis.on('error', (error) => {
+          logger.error('Redis error, falling back to in-memory store', { error });
+          this.useRedis = false;
+        });
+        
+        this.redis.on('connect', () => {
+          logger.info('Redis connection established for rate limiting');
+          this.useRedis = true;
+        });
       } catch (error) {
         logger.error('Failed to connect to Redis, falling back to in-memory store', { error });
+        this.useRedis = false;
       }
     } else {
       logger.info('No Redis URL provided, using in-memory rate limiting');
+      this.useRedis = false;
     }
   }
 
@@ -39,7 +62,11 @@ class RateLimiter {
     const windowStart = now - this.config.windowMs;
     
     try {
-      const multi = this.redis!.multi();
+      if (!this.redis || !this.useRedis) {
+        return this.checkInMemory(key);
+      }
+      
+      const multi = this.redis.multi();
       
       // Remove old requests
       multi.zremrangebyscore(key, 0, windowStart);
@@ -54,7 +81,7 @@ class RateLimiter {
       const count = requestCount[1];
 
       if (count > this.config.maxRequests) {
-        const oldestRequest = await this.redis!.zrange(key, 0, 0, 'WITHSCORES');
+        const oldestRequest = await this.redis.zrange(key, 0, 0, 'WITHSCORES');
         const resetTime = parseInt(oldestRequest[1]) + this.config.windowMs;
         
         return {
@@ -123,7 +150,7 @@ class RateLimiter {
   async checkLimit(identifier: string): Promise<RateLimitResult> {
     const key = `ratelimit:${identifier}`;
     
-    if (this.redis) {
+    if (this.useRedis && this.redis) {
       return this.checkRedis(key);
     }
     
