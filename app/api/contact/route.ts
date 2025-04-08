@@ -15,11 +15,11 @@ const ContactFormSchema = z.object({
   email: z.string().email("Invalid email address"),
   jobTitle: z.string().min(1, "Job title is required"),
   companyName: z.string().min(1, "Company name is required"),
-  phone: z.string().optional(),
-  location: z.string().optional(),
+  phone: emptyStringToUndefined.optional(),
+  location: emptyStringToUndefined.optional(),
   serviceInterest: z.string().min(1, "Service interest is required"),
   message: z.string().min(1, "Message is required"),
-  howHeard: z.string().optional(),
+  howHeard: emptyStringToUndefined.optional(),
 });
 
 export async function POST(request: Request) {
