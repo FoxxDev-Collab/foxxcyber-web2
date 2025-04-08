@@ -23,7 +23,7 @@ const ContactForm = () => {
 
   const serviceOptions = [
     { value: "", label: "Select a service" },
-    { value: "vciso", label: "Virtual CISO Services" },
+    { value: "soaas", label: "Security Officer as a Service" },
     { value: "ato", label: "ATO as a Service" },
     { value: "risk", label: "Security Risk Assessment" },
     { value: "consulting", label: "Security Consulting" },

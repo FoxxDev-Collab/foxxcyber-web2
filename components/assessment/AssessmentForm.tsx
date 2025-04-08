@@ -23,6 +23,8 @@ import {
   DialogHeader, 
   DialogTitle 
 } from '@/components/ui/dialog';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { InfoIcon, HelpCircle } from 'lucide-react';
 
 interface AssessmentData {
   id: string;
@@ -63,6 +65,10 @@ const AssessmentForm: React.FC = () => {
   const [showConfirmDialog, setShowConfirmDialog] = useState<boolean>(false);
   const [showResultsModal, setShowResultsModal] = useState<boolean>(false);
   const [assessmentData, setAssessmentData] = useState<AssessmentData | null>(null);
+  // Add state to track if content is changing to prevent jolting
+  const [isChangingFamily, setIsChangingFamily] = useState<boolean>(false);
+  // New state for help dialog
+  const [showHelpDialog, setShowHelpDialog] = useState<boolean>(false);
 
   // Load controls on component mount
   useEffect(() => {
@@ -102,6 +108,9 @@ const AssessmentForm: React.FC = () => {
   useEffect(() => {
     if (Object.keys(controls).length === 0 || !activeTab) return;
 
+    // Set changing state to true to prevent jolting
+    setIsChangingFamily(true);
+    
     let result: Control[] = [];
     
     // Get controls for the active family
@@ -143,6 +152,11 @@ const AssessmentForm: React.FC = () => {
     result.sort((a, b) => a.id.localeCompare(b.id));
     
     setFilteredControls(result);
+    
+    // After a short delay, set changing state to false to prevent jolting
+    setTimeout(() => {
+      setIsChangingFamily(false);
+    }, 100);
   }, [controls, activeTab, selectedBaseline, searchQuery]);
 
   // Calculate overall progress across all controls
@@ -238,6 +252,19 @@ const AssessmentForm: React.FC = () => {
 
   const handleChangeTab = (family: string) => {
     setActiveTab(family);
+  };
+
+  // Add function to navigate to next family
+  const handleNextFamily = () => {
+    const currentIndex = availableFamilies.indexOf(activeTab);
+    if (currentIndex < availableFamilies.length - 1) {
+      setActiveTab(availableFamilies[currentIndex + 1]);
+      // Scroll to top of the control section
+      const controlSection = document.getElementById('control-assessment-section');
+      if (controlSection) {
+        controlSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   };
 
   const handleShowResults = () => {
@@ -369,14 +396,32 @@ const AssessmentForm: React.FC = () => {
       />
       
       <Card>
-        <CardHeader>
-          <CardTitle className="flex justify-between items-center">
-            <span>NIST RMF Assessment</span>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <CardTitle>Assessment Information</CardTitle>
+          <div className="flex items-center gap-2">
             <UploadAssessment onUpload={handleUploadAssessment} />
-          </CardTitle>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => setShowHelpDialog(true)}
+              title="Assessment Help"
+            >
+              <HelpCircle className="h-5 w-5" />
+            </Button>
+          </div>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          {/* Add info alert for technical users */}
+          <Alert className="mb-6">
+            <InfoIcon className="h-4 w-4" />
+            <AlertTitle>Technical Assessment</AlertTitle>
+            <AlertDescription>
+              This assessment is designed for technical users familiar with security controls and risk management frameworks. 
+              Foxx Cyber experts are willing and able to assist you in completing the assessment if needed, please reach out.
+            </AlertDescription>
+          </Alert>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="space-y-2">
               <Label htmlFor="assessmentName">Assessment Name</Label>
               <Input
@@ -439,7 +484,7 @@ const AssessmentForm: React.FC = () => {
           <CardTitle>Control Assessment</CardTitle>
         </CardHeader>
         <CardContent>
-          <Tabs value={activeTab} onValueChange={handleChangeTab}>
+          <Tabs value={activeTab} onValueChange={handleChangeTab} id="control-assessment-section">
             <TabsList className="w-full overflow-x-auto">
               {availableFamilies.map(family => (
                 <TabsTrigger key={family} value={family}>
@@ -475,7 +520,8 @@ const AssessmentForm: React.FC = () => {
                 </div>
               </div>
 
-              <div className="space-y-4">
+              {/* Add loading indicator and transition for smooth experience */}
+              <div className={`space-y-4 transition-opacity duration-300 ${isChangingFamily || loading ? 'opacity-50' : 'opacity-100'}`}>
                 {filteredControls.length === 0 ? (
                   <div className="text-center p-6 text-muted-foreground">
                     No controls match the current filters for {activeTab} family.
@@ -491,10 +537,80 @@ const AssessmentForm: React.FC = () => {
                   ))
                 )}
               </div>
+              
+              {/* Add Next Family button */}
+              <div className="flex justify-end mt-6">
+                {availableFamilies.indexOf(activeTab) < availableFamilies.length - 1 && (
+                  <Button 
+                    onClick={handleNextFamily}
+                    className="flex items-center gap-2"
+                  >
+                    Next Family
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
+                      <path d="M9 18l6-6-6-6"></path>
+                    </svg>
+                  </Button>
+                )}
+              </div>
             </TabsContent>
           </Tabs>
         </CardContent>
       </Card>
+      
+      {/* Help Dialog */}
+      <Dialog open={showHelpDialog} onOpenChange={setShowHelpDialog}>
+        <DialogContent className="sm:max-w-[600px]">
+          <DialogHeader>
+            <DialogTitle>Assessment Help</DialogTitle>
+            <DialogDescription>
+              Information about using the Foxx Cyber assessment tool
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div>
+              <h3 className="text-lg font-semibold mb-2">About This Assessment</h3>
+              <p className="text-sm text-muted-foreground">
+                This assessment tool is designed for technical users who are familiar with security controls 
+                and risk management frameworks. It helps organizations evaluate their security posture 
+                against industry-standard controls.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Who Should Use This Tool</h3>
+              <p className="text-sm text-muted-foreground">
+                Security professionals, compliance officers, IT managers, and other technical staff 
+                responsible for security compliance and risk management.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-2">How to Use</h3>
+              <ul className="text-sm text-muted-foreground list-disc pl-5 space-y-1">
+                <li>Fill in your organization&apos;s information in the Assessment Information section</li>
+                <li>Navigate through control families using the tabs or &quot;Next Family&quot; button</li>
+                <li>For each control, select an implementation status and add notes</li>
+                <li>Use the baseline filter to focus on controls relevant to your security level</li>
+                <li>View your results at any time using the &quot;View Results&quot; button</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-2">About Foxx Cyber</h3>
+              <p className="text-sm text-muted-foreground">
+                Foxx Cyber is the industry-leading provider of Governance, Risk, and Compliance (GRC) 
+                and Risk Management Framework (RMF) solutions. Our comprehensive tools and expert 
+                guidance help organizations of all sizes implement effective security programs.
+              </p>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button onClick={() => setShowHelpDialog(false)}>Close</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

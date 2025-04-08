@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const services = [
-  { name: 'vCISO', href: '/vciso' },
+  { name: 'Security Officer as a Service', href: '/soaas' },
   { name: 'ATOaaS', href: '/atoaas' },
   { name: 'NIST RMF', href: '/nist' },
 ];
@@ -22,7 +22,7 @@ const services = [
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Services', items: services },
-  { name: 'Assessment', href: '/assessment' },
+  { name: 'Risk Assessment', href: '/assessment' },
   { name: 'Contact', href: '/contact' },  
   { name: 'About', href: '/about' },
 ];

@@ -98,7 +98,7 @@ export default function ServicesPage() {
 
         {/* Main Services */}
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
-          {/* vCISO Service */}
+          {/* Security Officer as a Service */}
           <Card className="bg-white/50 dark:bg-slate-800/50 backdrop-blur transform hover:scale-105 transition-all">
             <CardHeader>
               <div className="flex items-center gap-4 mb-4">
@@ -106,39 +106,38 @@ export default function ServicesPage() {
                   <Users className="h-8 w-8 text-primary" />
                 </div>
                 <div>
-                  <CardTitle className="text-2xl">Virtual CISO</CardTitle>
+                  <CardTitle className="text-2xl">Security Officer as a Service</CardTitle>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Strategic Security Leadership</p>
                 </div>
               </div>
               <p className="text-gray-600 dark:text-gray-300">
-                Transform your security posture with executive-level guidance at a fraction of the cost of a full-time CISO. 
-                Our vCISO service builds security programs that align with your business objectives.
+                Our Security Officer as a Service (SOaaS) builds security programs that align with your business objectives.
               </p>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Clock className="h-4 w-4 text-primary" />
+                  <Shield className="h-4 w-4 text-primary" />
+                </div>
+                <span className="text-gray-600 dark:text-gray-300">Executive-level security leadership</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <FileCheck className="h-4 w-4 text-primary" />
                 </div>
                 <span className="text-gray-600 dark:text-gray-300">Strategic security roadmaps</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Shield className="h-4 w-4 text-primary" />
+                  <TrendingUp className="h-4 w-4 text-primary" />
                 </div>
-                <span className="text-gray-600 dark:text-gray-300">Risk management & compliance</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Users className="h-4 w-4 text-primary" />
-                </div>
-                <span className="text-gray-600 dark:text-gray-300">Security culture development</span>
+                <span className="text-gray-600 dark:text-gray-300">Business-aligned security programs</span>
               </div>
             </CardContent>
             <CardFooter>
               <Button className="w-full group" asChild>
-                <Link href="/services/vciso" className="flex items-center justify-center">
-                  Learn More About vCISO
+                <Link href="/soaas" className="flex items-center justify-center">
+                  Learn More About SOaaS
                   <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>

@@ -6,8 +6,8 @@ Foxx Cyber provides expert cybersecurity services designed to protect organizati
 
 ## Our Core Services
 
-### Virtual CISO Services
-Executive-level security leadership at a fraction of the cost of a full-time hire. Our vCISO service provides:
+### Security Officer as a Service (SOaaS)
+Executive-level security leadership at a fraction of the cost of a full-time hire. Our Security Officer as a Service provides:
 
 - Strategic security planning and roadmap development
 - Comprehensive policy framework implementation

@@ -198,31 +198,31 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
             <div className="col-span-1 lg:col-span-2 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <h3 className="text-sm font-medium">Assessment Name</h3>
+                  <h3 className="text-sm font-medium text-muted-foreground">Assessment Name</h3>
                   <p className="text-base font-semibold">{assessmentData.name}</p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium">Organization</h3>
+                  <h3 className="text-sm font-medium text-muted-foreground">Organization</h3>
                   <p className="text-base">{assessmentData.organization}</p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium">Assessor</h3>
+                  <h3 className="text-sm font-medium text-muted-foreground">Assessor</h3>
                   <p className="text-base">{assessmentData.assessor}</p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium">Date</h3>
+                  <h3 className="text-sm font-medium text-muted-foreground">Date</h3>
                   <p className="text-base">{new Date(assessmentData.date).toLocaleDateString()}</p>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-sm font-medium mb-2">Scope</h3>
+                <h3 className="text-sm font-medium text-muted-foreground mb-2">Scope</h3>
                 <p className="text-sm bg-muted p-3 rounded">{assessmentData.scope}</p>
               </div>
             </div>
 
             {/* Risk Level Assessment */}
-            <div className="border rounded-lg p-6 bg-gray-50">
+            <div className="border rounded-lg p-6 bg-background">
               <div className="flex items-center gap-3 mb-3">
                 <RiskIcon size={24} color={currentRiskLevel.color} />
                 <h3 className="text-lg font-bold">
@@ -238,14 +238,14 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
                 >
                   <div className="text-center">
                     <div className="text-3xl font-bold">{progress.percentage}%</div>
-                    <div className="text-xs text-gray-500">Implementation</div>
+                    <div className="text-xs text-muted-foreground">Implementation</div>
                   </div>
                 </DonutChart>
               </div>
               
-              <p className="text-sm mb-4">{currentRiskLevel.description}</p>
+              <p className="text-sm text-muted-foreground mb-4">{currentRiskLevel.description}</p>
               
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-muted-foreground">
                 <p className="mb-1">Control Implementation:</p>
                 <p className="mb-1">{progress.completed} of {progress.total} controls implemented</p>
               </div>
@@ -274,13 +274,13 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
                       </div>
                       <div className="flex justify-between items-baseline mb-1">
                         <span className={`text-2xl font-bold ${getStatusColor(status)}`}>{count}</span>
-                        <span className="text-sm text-gray-500">{calculatePercentage(count)}% of controls</span>
+                        <span className="text-sm text-muted-foreground">{calculatePercentage(count)}% of controls</span>
                       </div>
                       <div className="mt-2">
                         <div className="text-xs font-medium" style={{ color: priorityInfo?.color }}>
                           {priorityInfo?.priority} Priority
                         </div>
-                        <p className="text-xs text-gray-600 mt-1">{priorityInfo?.description}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{priorityInfo?.description}</p>
                       </div>
                     </div>
                   );
@@ -312,7 +312,7 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
                             {family.criticality} Risk
                           </span>
                         </div>
-                        <p className="text-xs text-gray-600 mt-1">{family.description}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{family.description}</p>
                       </div>
                       <div className="flex items-center">
                         <DonutChart 
@@ -327,21 +327,21 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
                     </div>
                     
                     <div className="grid grid-cols-4 gap-2 mt-3">
-                      <div className="text-center p-1 bg-green-50 rounded">
-                        <div className="text-xs font-medium text-green-600">{family.implemented}</div>
-                        <div className="text-xs text-gray-500">Implemented</div>
+                      <div className="text-center p-1 bg-green-100 dark:bg-green-900/30 rounded">
+                        <div className="text-xs font-medium text-green-600 dark:text-green-400">{family.implemented}</div>
+                        <div className="text-xs text-muted-foreground">Implemented</div>
                       </div>
-                      <div className="text-center p-1 bg-amber-50 rounded">
-                        <div className="text-xs font-medium text-amber-600">{family.partiallyImplemented}</div>
-                        <div className="text-xs text-gray-500">Partial</div>
+                      <div className="text-center p-1 bg-amber-100 dark:bg-amber-900/30 rounded">
+                        <div className="text-xs font-medium text-amber-600 dark:text-amber-400">{family.partiallyImplemented}</div>
+                        <div className="text-xs text-muted-foreground">Partial</div>
                       </div>
-                      <div className="text-center p-1 bg-blue-50 rounded">
-                        <div className="text-xs font-medium text-blue-600">{family.planned}</div>
-                        <div className="text-xs text-gray-500">Planned</div>
+                      <div className="text-center p-1 bg-blue-100 dark:bg-blue-900/30 rounded">
+                        <div className="text-xs font-medium text-blue-600 dark:text-blue-400">{family.planned}</div>
+                        <div className="text-xs text-muted-foreground">Planned</div>
                       </div>
-                      <div className="text-center p-1 bg-red-50 rounded">
-                        <div className="text-xs font-medium text-red-600">{family.notImplemented}</div>
-                        <div className="text-xs text-gray-500">Not Impl.</div>
+                      <div className="text-center p-1 bg-red-100 dark:bg-red-900/30 rounded">
+                        <div className="text-xs font-medium text-red-600 dark:text-red-400">{family.notImplemented}</div>
+                        <div className="text-xs text-muted-foreground">Not Impl.</div>
                       </div>
                     </div>
                   </div>
@@ -351,13 +351,13 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
           </div>
           
           {/* Risk Remediation Recommendations */}
-          <div className="border rounded-lg p-6 bg-gray-50">
+          <div className="border rounded-lg p-6 bg-background">
             <h3 className="text-md font-semibold mb-4">Risk Remediation Recommendations</h3>
             <ul className="space-y-3">
               {progress.percentage < 30 && (
                 <li className="flex gap-2">
                   <AlertTriangle size={18} className="shrink-0 text-red-500 mt-0.5" />
-                  <p className="text-sm">Develop an immediate remediation plan focusing on Critical and High risk control families.</p>
+                  <p className="text-sm text-muted-foreground">Develop an immediate remediation plan focusing on Critical and High risk control families.</p>
                 </li>
               )}
               {familyImplementationRates
@@ -366,7 +366,7 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
                 .map(family => (
                   <li key={family.family} className="flex gap-2">
                     <AlertTriangle size={18} className="shrink-0 text-red-500 mt-0.5" />
-                    <p className="text-sm">Prioritize implementing <strong>{family.family}</strong> controls ({family.implementationRate}% complete) to address critical risks in {family.description.toLowerCase()}</p>
+                    <p className="text-sm text-muted-foreground">Prioritize implementing <strong>{family.family}</strong> controls ({family.implementationRate}% complete) to address critical risks in {family.description.toLowerCase()}</p>
                   </li>
                 ))}
               {familyImplementationRates
@@ -375,19 +375,19 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
                 .map(family => (
                   <li key={family.family} className="flex gap-2">
                     <Info size={18} className="shrink-0 text-orange-500 mt-0.5" />
-                    <p className="text-sm">Address <strong>{family.family}</strong> controls ({family.implementationRate}% complete) to mitigate high-risk vulnerabilities.</p>
+                    <p className="text-sm text-muted-foreground">Address <strong>{family.family}</strong> controls ({family.implementationRate}% complete) to mitigate high-risk vulnerabilities.</p>
                   </li>
                 ))}
               {statusCounts['Partially Implemented'] > 0 && (
                 <li className="flex gap-2">
                   <Info size={18} className="shrink-0 text-amber-500 mt-0.5" />
-                  <p className="text-sm">Complete the {statusCounts['Partially Implemented']} partially implemented controls to improve your overall security posture.</p>
+                  <p className="text-sm text-muted-foreground">Complete the {statusCounts['Partially Implemented']} partially implemented controls to improve your overall security posture.</p>
                 </li>
               )}
               {statusCounts['Implemented'] > 0 && (
                 <li className="flex gap-2">
                   <Check size={18} className="shrink-0 text-green-500 mt-0.5" />
-                  <p className="text-sm">Continue maintaining and reviewing your {statusCounts['Implemented']} implemented controls for effectiveness.</p>
+                  <p className="text-sm text-muted-foreground">Continue maintaining and reviewing your {statusCounts['Implemented']} implemented controls for effectiveness.</p>
                 </li>
               )}
             </ul>
@@ -407,4 +407,4 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
   );
 };
 
-export default ResultsModal; 
+export default ResultsModal;
