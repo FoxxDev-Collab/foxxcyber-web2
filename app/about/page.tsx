@@ -15,7 +15,7 @@ export default function AboutPage() {
                     Foxx Cyber: Building Your Bedrock Security Foundation
                   </h1>
                   <p className="text-xl text-gray-600 dark:text-gray-300">
-                    At Foxx Cyber, we believe security isn't just about defense—it's about establishing a <span className="font-semibold text-primary dark:text-primary/80">firm foundation</span> for innovation, trust, and sustainable growth. Our Bedrock Security approach helps organizations build security cultures that protect assets while empowering business progress.
+                    At Foxx Cyber, we believe security isn&apos;t just about defense—it&apos;s about establishing a <span className="font-semibold text-primary dark:text-primary/80">firm foundation</span> for innovation, trust, and sustainable growth. Our Bedrock Security approach helps organizations build security cultures that protect assets while empowering business progress.
                   </p>
                 </div>
                 

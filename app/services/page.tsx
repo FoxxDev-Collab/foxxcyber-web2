@@ -46,7 +46,7 @@ export default function ServicesPage() {
             Building Security on Firm Foundations
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Foxx Cyber's Bedrock Security services provide the essential framework to protect and empower your business growth.
+            Foxx Cyber&apos;s Bedrock Security services provide the essential framework to protect and empower your business growth.
           </p>
         </div>
 
@@ -98,7 +98,7 @@ export default function ServicesPage() {
 
         {/* Service Tiers Section - Replaces Core Services */}
         <div className="mb-20">
-          <h2 className="text-3xl font-bold text-center mb-12 dark:text-gray-50">Foxx Cyber's Bedrock Security Tiers</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 dark:text-gray-50">Foxx Cyber&apos;s Bedrock Security Tiers</h2>
           <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Foundation Layer Card */}
             <Card className="bg-white/50 dark:bg-slate-800/30 backdrop-blur-sm flex flex-col transform hover:scale-[1.02] transition-all">
@@ -233,7 +233,7 @@ export default function ServicesPage() {
             <div className="text-center space-y-6 max-w-2xl mx-auto">
               <h2 className="text-3xl font-semibold dark:text-gray-50">Ready to Build Your Security Foundation?</h2>
               <p className="text-lg text-gray-600 dark:text-gray-300">
-                Schedule a consultation with Foxx Cyber to discuss how our Bedrock Security approach can establish a firm foundation for your organization's protection and growth.
+                Schedule a consultation with Foxx Cyber to discuss how our Bedrock Security approach can establish a firm foundation for your organization&apos;s protection and growth.
               </p>
               <Button size="lg" className="group" asChild>
                 <Link href="/contact" className="flex items-center">
