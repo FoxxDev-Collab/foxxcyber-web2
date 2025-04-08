@@ -42,4 +42,6 @@ next-env.d.ts
 /logs
 /logs/*
 
+package-lock.json
+
 *sonnarqube-command.txt
