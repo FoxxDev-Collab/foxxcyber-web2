@@ -39,6 +39,9 @@ next-env.d.ts
 /scannerwork
 .scannerwork
 
+logs
+.logs
+./logs
 /logs
 /logs/*
 
